@@ -18,8 +18,8 @@
 
 #define SEG_PIN(p,n) ((gpio_t){p,n})
 	
-	#define SEG_CATHODE 1
-	#define SEG_ANODE 0
+#define SEG_CATHODE 1
+#define SEG_ANODE 0
 	
 typedef enum {
 	SEG_BUS_A,
