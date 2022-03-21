@@ -11,6 +11,7 @@
 #include "seg.h"
 
 segment_t sev_seg = {0};
+segment_t sev_seg_2 = {0};
 	
 int main(void)
 {
@@ -39,9 +40,36 @@ int main(void)
 							 
 							 SEG_ANODE); //type
 							 
+      segment_config(&sev_seg_2,
+                             6,                 // digits
+							 
+                             SEG_PIN(PORT_E,PIN_0),  // control pins
+                             SEG_PIN(PORT_E,PIN_1),
+							 SEG_PIN(PORT_E,PIN_2),
+							 SEG_PIN(PORT_E,PIN_3),
+							 SEG_PIN(PORT_E,PIN_4), 
+							 SEG_PIN(PORT_E,PIN_5),
+							 
+							 SEG_PIN(PORT_D,PIN_0),  // data pins
+							 SEG_PIN(PORT_D,PIN_1),
+							 SEG_PIN(PORT_D,PIN_2),
+							 SEG_PIN(PORT_D,PIN_3),
+							 SEG_PIN(PORT_D,PIN_4),
+							 SEG_PIN(PORT_D,PIN_5),
+							 SEG_PIN(PORT_D,PIN_6),
+							 SEG_PIN(PORT_D,PIN_7), 
+							 
+							 SEG_CATHODE); //type
+							 
     while (1) 
     {
 		
+				
+				segment_writeChar(&sev_seg_2,0,'S');
+				
+				segment_writeChar(&sev_seg_2,1,9);
+				segment_writeChar(&sev_seg_2,2,4);
+				
 		segment_writeChar(&sev_seg,0,'T');
 		
 		segment_writeChar(&sev_seg,1,4);
@@ -49,6 +77,9 @@ int main(void)
 		
 		segment_writeChar(&sev_seg,3,'\'');
 		segment_writeChar(&sev_seg,4,'C');
+		
+		
+
 		
 		
 		

@@ -38,7 +38,7 @@ typedef struct
 	gpio_t cntrl_bus[8];
 	
 	char max_digits;
-	
+	u8_t segOn,segOff,digOff,digOn;
 }segment_t;
 
 void segment_config(segment_t *seg,u8_t cntrl_bus,...);

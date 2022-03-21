@@ -3,31 +3,31 @@ seven-seg.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000002a  00800100  000004f2  00000586  2**0
+  0 .data         0000002a  00800100  0000053c  000005d0  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000004f2  00000000  00000000  00000094  2**1
+  1 .text         0000053c  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000025  0080012a  0080012a  000005b0  2**0
+  2 .bss          0000004a  0080012a  0080012a  000005fa  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000005b0  2**0
+  3 .comment      00000030  00000000  00000000  000005fa  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000005e0  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000062c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000a8  00000000  00000000  0000061c  2**0
+  5 .debug_aranges 000000a8  00000000  00000000  00000668  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000015e7  00000000  00000000  000006c4  2**0
+  6 .debug_info   000016b1  00000000  00000000  00000710  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000bad  00000000  00000000  00001cab  2**0
+  7 .debug_abbrev 00000bad  00000000  00000000  00001dc1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000075c  00000000  00000000  00002858  2**0
+  8 .debug_line   00000786  00000000  00000000  0000296e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000001e8  00000000  00000000  00002fb4  2**2
+  9 .debug_frame  0000024c  00000000  00000000  000030f4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000006a7  00000000  00000000  0000319c  2**0
+ 10 .debug_str    000006b1  00000000  00000000  00003340  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000a37  00000000  00000000  00003843  2**0
+ 11 .debug_loc    00000c2a  00000000  00000000  000039f1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000078  00000000  00000000  0000427a  2**0
+ 12 .debug_ranges 00000078  00000000  00000000  0000461b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -171,8 +171,8 @@ Disassembly of section .text:
  118:	11 e0       	ldi	r17, 0x01	; 1
  11a:	a0 e0       	ldi	r26, 0x00	; 0
  11c:	b1 e0       	ldi	r27, 0x01	; 1
- 11e:	e2 ef       	ldi	r30, 0xF2	; 242
- 120:	f4 e0       	ldi	r31, 0x04	; 4
+ 11e:	ec e3       	ldi	r30, 0x3C	; 60
+ 120:	f5 e0       	ldi	r31, 0x05	; 5
  122:	00 e0       	ldi	r16, 0x00	; 0
  124:	0b bf       	out	0x3b, r16	; 59
  126:	02 c0       	rjmp	.+4      	; 0x12c <__do_copy_data+0x14>
@@ -192,11 +192,11 @@ Disassembly of section .text:
  13a:	1d 92       	st	X+, r1
 
 0000013c <.do_clear_bss_start>:
- 13c:	af 34       	cpi	r26, 0x4F	; 79
+ 13c:	a4 37       	cpi	r26, 0x74	; 116
  13e:	b2 07       	cpc	r27, r18
  140:	e1 f7       	brne	.-8      	; 0x13a <.do_clear_bss_loop>
  142:	5d d0       	rcall	.+186    	; 0x1fe <main>
- 144:	d4 c1       	rjmp	.+936    	; 0x4ee <_exit>
+ 144:	f9 c1       	rjmp	.+1010   	; 0x538 <_exit>
 
 00000146 <__bad_interrupt>:
  146:	5c cf       	rjmp	.-328    	; 0x0 <__vectors>
@@ -316,580 +316,662 @@ void gpio_config(gpio_t *io,gpio_dir_t dir,gpio_state_t state) {
 							 SEG_PIN(PORT_B,PIN_5),
 							 SEG_PIN(PORT_B,PIN_6),
 							 SEG_PIN(PORT_B,PIN_7), 
- 1fe:	81 e0       	ldi	r24, 0x01	; 1
+ 1fe:	c1 e0       	ldi	r28, 0x01	; 1
+ 200:	0f 2e       	mov	r0, r31
+ 202:	f7 e0       	ldi	r31, 0x07	; 7
+ 204:	df 2e       	mov	r13, r31
+ 206:	f0 2d       	mov	r31, r0
+							 SEG_PIN(PORT_B,PIN_1),
+							 SEG_PIN(PORT_B,PIN_2),
+							 SEG_PIN(PORT_B,PIN_3),
+							 SEG_PIN(PORT_B,PIN_4),
+							 SEG_PIN(PORT_B,PIN_5),
+							 SEG_PIN(PORT_B,PIN_6),
+ 208:	0f 2e       	mov	r0, r31
+ 20a:	f6 e0       	ldi	r31, 0x06	; 6
+ 20c:	ef 2e       	mov	r14, r31
+ 20e:	f0 2d       	mov	r31, r0
 							 SEG_PIN(PORT_B,PIN_0),  // data pins
 							 SEG_PIN(PORT_B,PIN_1),
 							 SEG_PIN(PORT_B,PIN_2),
 							 SEG_PIN(PORT_B,PIN_3),
 							 SEG_PIN(PORT_B,PIN_4),
 							 SEG_PIN(PORT_B,PIN_5),
- 200:	95 e0       	ldi	r25, 0x05	; 5
+ 210:	0f 2e       	mov	r0, r31
+ 212:	f5 e0       	ldi	r31, 0x05	; 5
+ 214:	ff 2e       	mov	r15, r31
+ 216:	f0 2d       	mov	r31, r0
 							 
 							 SEG_PIN(PORT_B,PIN_0),  // data pins
 							 SEG_PIN(PORT_B,PIN_1),
 							 SEG_PIN(PORT_B,PIN_2),
 							 SEG_PIN(PORT_B,PIN_3),
 							 SEG_PIN(PORT_B,PIN_4),
- 202:	44 e0       	ldi	r20, 0x04	; 4
+ 218:	14 e0       	ldi	r17, 0x04	; 4
 							 SEG_PIN(PORT_A,PIN_7),*/
 							 
 							 SEG_PIN(PORT_B,PIN_0),  // data pins
 							 SEG_PIN(PORT_B,PIN_1),
 							 SEG_PIN(PORT_B,PIN_2),
 							 SEG_PIN(PORT_B,PIN_3),
- 204:	33 e0       	ldi	r19, 0x03	; 3
+ 21a:	d3 e0       	ldi	r29, 0x03	; 3
 							 SEG_PIN(PORT_A,PIN_6),
 							 SEG_PIN(PORT_A,PIN_7),*/
 							 
 							 SEG_PIN(PORT_B,PIN_0),  // data pins
 							 SEG_PIN(PORT_B,PIN_1),
 							 SEG_PIN(PORT_B,PIN_2),
- 206:	22 e0       	ldi	r18, 0x02	; 2
+ 21c:	02 e0       	ldi	r16, 0x02	; 2
 	
 int main(void)
 {
 	//int x =35;
 	
    segment_config(&sev_seg,
- 208:	1f 92       	push	r1
- 20a:	1f 92       	push	r1
- 20c:	57 e0       	ldi	r21, 0x07	; 7
- 20e:	5f 93       	push	r21
- 210:	8f 93       	push	r24
- 212:	56 e0       	ldi	r21, 0x06	; 6
- 214:	5f 93       	push	r21
- 216:	8f 93       	push	r24
- 218:	9f 93       	push	r25
- 21a:	8f 93       	push	r24
- 21c:	4f 93       	push	r20
- 21e:	8f 93       	push	r24
- 220:	3f 93       	push	r19
- 222:	8f 93       	push	r24
- 224:	2f 93       	push	r18
- 226:	8f 93       	push	r24
- 228:	8f 93       	push	r24
- 22a:	8f 93       	push	r24
- 22c:	1f 92       	push	r1
- 22e:	8f 93       	push	r24
- 230:	4f 93       	push	r20
- 232:	1f 92       	push	r1
- 234:	3f 93       	push	r19
- 236:	1f 92       	push	r1
- 238:	2f 93       	push	r18
- 23a:	1f 92       	push	r1
- 23c:	8f 93       	push	r24
+ 21e:	1f 92       	push	r1
+ 220:	1f 92       	push	r1
+ 222:	df 92       	push	r13
+ 224:	cf 93       	push	r28
+ 226:	ef 92       	push	r14
+ 228:	cf 93       	push	r28
+ 22a:	ff 92       	push	r15
+ 22c:	cf 93       	push	r28
+ 22e:	1f 93       	push	r17
+ 230:	cf 93       	push	r28
+ 232:	df 93       	push	r29
+ 234:	cf 93       	push	r28
+ 236:	0f 93       	push	r16
+ 238:	cf 93       	push	r28
+ 23a:	cf 93       	push	r28
+ 23c:	cf 93       	push	r28
  23e:	1f 92       	push	r1
- 240:	1f 92       	push	r1
- 242:	1f 92       	push	r1
- 244:	9f 93       	push	r25
- 246:	8a e2       	ldi	r24, 0x2A	; 42
- 248:	91 e0       	ldi	r25, 0x01	; 1
- 24a:	9f 93       	push	r25
- 24c:	8f 93       	push	r24
- 24e:	22 d0       	rcall	.+68     	; 0x294 <segment_config>
- 250:	8d b7       	in	r24, 0x3d	; 61
- 252:	9e b7       	in	r25, 0x3e	; 62
- 254:	4f 96       	adiw	r24, 0x1f	; 31
- 256:	0f b6       	in	r0, 0x3f	; 63
- 258:	f8 94       	cli
- 25a:	9e bf       	out	0x3e, r25	; 62
- 25c:	0f be       	out	0x3f, r0	; 63
- 25e:	8d bf       	out	0x3d, r24	; 61
+ 240:	cf 93       	push	r28
+ 242:	1f 93       	push	r17
+ 244:	1f 92       	push	r1
+ 246:	df 93       	push	r29
+ 248:	1f 92       	push	r1
+ 24a:	0f 93       	push	r16
+ 24c:	1f 92       	push	r1
+ 24e:	cf 93       	push	r28
+ 250:	1f 92       	push	r1
+ 252:	1f 92       	push	r1
+ 254:	1f 92       	push	r1
+ 256:	ff 92       	push	r15
+ 258:	8f e4       	ldi	r24, 0x4F	; 79
+ 25a:	91 e0       	ldi	r25, 0x01	; 1
+ 25c:	9f 93       	push	r25
+ 25e:	8f 93       	push	r24
+ 260:	56 d0       	rcall	.+172    	; 0x30e <segment_config>
+							 SEG_PIN(PORT_B,PIN_6),
+							 SEG_PIN(PORT_B,PIN_7), 
+							 
 							 SEG_ANODE); //type
+							 
+      segment_config(&sev_seg_2,
+ 262:	1f 92       	push	r1
+ 264:	cf 93       	push	r28
+ 266:	df 92       	push	r13
+ 268:	df 93       	push	r29
+ 26a:	ef 92       	push	r14
+ 26c:	df 93       	push	r29
+ 26e:	ff 92       	push	r15
+ 270:	df 93       	push	r29
+ 272:	1f 93       	push	r17
+ 274:	df 93       	push	r29
+ 276:	df 93       	push	r29
+ 278:	df 93       	push	r29
+ 27a:	0f 93       	push	r16
+ 27c:	df 93       	push	r29
+ 27e:	cf 93       	push	r28
+ 280:	df 93       	push	r29
+ 282:	1f 92       	push	r1
+ 284:	df 93       	push	r29
+ 286:	ff 92       	push	r15
+ 288:	1f 93       	push	r17
+ 28a:	1f 93       	push	r17
+ 28c:	1f 93       	push	r17
+ 28e:	df 93       	push	r29
+ 290:	1f 93       	push	r17
+ 292:	0f 93       	push	r16
+ 294:	1f 93       	push	r17
+ 296:	cf 93       	push	r28
+ 298:	1f 93       	push	r17
+ 29a:	1f 92       	push	r1
+ 29c:	1f 93       	push	r17
+ 29e:	ef 92       	push	r14
+ 2a0:	8a e2       	ldi	r24, 0x2A	; 42
+ 2a2:	91 e0       	ldi	r25, 0x01	; 1
+ 2a4:	9f 93       	push	r25
+ 2a6:	8f 93       	push	r24
+ 2a8:	32 d0       	rcall	.+100    	; 0x30e <segment_config>
+ 2aa:	8d b7       	in	r24, 0x3d	; 61
+ 2ac:	9e b7       	in	r25, 0x3e	; 62
+ 2ae:	80 5c       	subi	r24, 0xC0	; 192
+ 2b0:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2b2:	0f b6       	in	r0, 0x3f	; 63
+ 2b4:	f8 94       	cli
+ 2b6:	9e bf       	out	0x3e, r25	; 62
+ 2b8:	0f be       	out	0x3f, r0	; 63
+ 2ba:	8d bf       	out	0x3d, r24	; 61
 							 
     while (1) 
     {
 		
+				
+				segment_writeChar(&sev_seg_2,0,'S');
+ 2bc:	43 e5       	ldi	r20, 0x53	; 83
+ 2be:	60 e0       	ldi	r22, 0x00	; 0
+ 2c0:	8a e2       	ldi	r24, 0x2A	; 42
+ 2c2:	91 e0       	ldi	r25, 0x01	; 1
+ 2c4:	1d d1       	rcall	.+570    	; 0x500 <segment_writeChar>
+				
+				segment_writeChar(&sev_seg_2,1,9);
+ 2c6:	49 e0       	ldi	r20, 0x09	; 9
+ 2c8:	61 e0       	ldi	r22, 0x01	; 1
+ 2ca:	8a e2       	ldi	r24, 0x2A	; 42
+ 2cc:	91 e0       	ldi	r25, 0x01	; 1
+ 2ce:	18 d1       	rcall	.+560    	; 0x500 <segment_writeChar>
+				segment_writeChar(&sev_seg_2,2,4);
+ 2d0:	44 e0       	ldi	r20, 0x04	; 4
+ 2d2:	62 e0       	ldi	r22, 0x02	; 2
+ 2d4:	8a e2       	ldi	r24, 0x2A	; 42
+ 2d6:	91 e0       	ldi	r25, 0x01	; 1
+ 2d8:	13 d1       	rcall	.+550    	; 0x500 <segment_writeChar>
+				
 		segment_writeChar(&sev_seg,0,'T');
- 260:	44 e5       	ldi	r20, 0x54	; 84
- 262:	60 e0       	ldi	r22, 0x00	; 0
- 264:	8a e2       	ldi	r24, 0x2A	; 42
- 266:	91 e0       	ldi	r25, 0x01	; 1
- 268:	26 d1       	rcall	.+588    	; 0x4b6 <segment_writeChar>
+ 2da:	44 e5       	ldi	r20, 0x54	; 84
+ 2dc:	60 e0       	ldi	r22, 0x00	; 0
+ 2de:	8f e4       	ldi	r24, 0x4F	; 79
+ 2e0:	91 e0       	ldi	r25, 0x01	; 1
+ 2e2:	0e d1       	rcall	.+540    	; 0x500 <segment_writeChar>
 		
 		segment_writeChar(&sev_seg,1,4);
- 26a:	44 e0       	ldi	r20, 0x04	; 4
- 26c:	61 e0       	ldi	r22, 0x01	; 1
- 26e:	8a e2       	ldi	r24, 0x2A	; 42
- 270:	91 e0       	ldi	r25, 0x01	; 1
- 272:	21 d1       	rcall	.+578    	; 0x4b6 <segment_writeChar>
+ 2e4:	44 e0       	ldi	r20, 0x04	; 4
+ 2e6:	61 e0       	ldi	r22, 0x01	; 1
+ 2e8:	8f e4       	ldi	r24, 0x4F	; 79
+ 2ea:	91 e0       	ldi	r25, 0x01	; 1
+ 2ec:	09 d1       	rcall	.+530    	; 0x500 <segment_writeChar>
         segment_writeChar(&sev_seg,2,1);
- 274:	41 e0       	ldi	r20, 0x01	; 1
- 276:	62 e0       	ldi	r22, 0x02	; 2
- 278:	8a e2       	ldi	r24, 0x2A	; 42
- 27a:	91 e0       	ldi	r25, 0x01	; 1
- 27c:	1c d1       	rcall	.+568    	; 0x4b6 <segment_writeChar>
+ 2ee:	41 e0       	ldi	r20, 0x01	; 1
+ 2f0:	62 e0       	ldi	r22, 0x02	; 2
+ 2f2:	8f e4       	ldi	r24, 0x4F	; 79
+ 2f4:	91 e0       	ldi	r25, 0x01	; 1
+ 2f6:	04 d1       	rcall	.+520    	; 0x500 <segment_writeChar>
 		
 		segment_writeChar(&sev_seg,3,'\'');
- 27e:	47 e2       	ldi	r20, 0x27	; 39
- 280:	63 e0       	ldi	r22, 0x03	; 3
- 282:	8a e2       	ldi	r24, 0x2A	; 42
- 284:	91 e0       	ldi	r25, 0x01	; 1
- 286:	17 d1       	rcall	.+558    	; 0x4b6 <segment_writeChar>
+ 2f8:	47 e2       	ldi	r20, 0x27	; 39
+ 2fa:	63 e0       	ldi	r22, 0x03	; 3
+ 2fc:	8f e4       	ldi	r24, 0x4F	; 79
+ 2fe:	91 e0       	ldi	r25, 0x01	; 1
+ 300:	ff d0       	rcall	.+510    	; 0x500 <segment_writeChar>
 		segment_writeChar(&sev_seg,4,'C');
- 288:	43 e4       	ldi	r20, 0x43	; 67
- 28a:	64 e0       	ldi	r22, 0x04	; 4
- 28c:	8a e2       	ldi	r24, 0x2A	; 42
- 28e:	91 e0       	ldi	r25, 0x01	; 1
- 290:	12 d1       	rcall	.+548    	; 0x4b6 <segment_writeChar>
- 292:	e6 cf       	rjmp	.-52     	; 0x260 <main+0x62>
+ 302:	43 e4       	ldi	r20, 0x43	; 67
+ 304:	64 e0       	ldi	r22, 0x04	; 4
+ 306:	8f e4       	ldi	r24, 0x4F	; 79
+ 308:	91 e0       	ldi	r25, 0x01	; 1
+ 30a:	fa d0       	rcall	.+500    	; 0x500 <segment_writeChar>
+ 30c:	d7 cf       	rjmp	.-82     	; 0x2bc <main+0xbe>
 
-00000294 <segment_config>:
- 294:	cf 92       	push	r12
+0000030e <segment_config>:
 	
 };
 
-u8_t segOn,segOff,digOff,digOn;
+
 
 void segment_config(segment_t *seg,u8_t cntrl_bus,...) {
- 296:	df 92       	push	r13
- 298:	ef 92       	push	r14
- 29a:	ff 92       	push	r15
- 29c:	0f 93       	push	r16
- 29e:	1f 93       	push	r17
- 2a0:	cf 93       	push	r28
- 2a2:	df 93       	push	r29
- 2a4:	cd b7       	in	r28, 0x3d	; 61
- 2a6:	de b7       	in	r29, 0x3e	; 62
- 2a8:	0b 85       	ldd	r16, Y+11	; 0x0b
- 2aa:	1c 85       	ldd	r17, Y+12	; 0x0c
- 2ac:	4d 85       	ldd	r20, Y+13	; 0x0d
+ 30e:	cf 92       	push	r12
+ 310:	df 92       	push	r13
+ 312:	ef 92       	push	r14
+ 314:	ff 92       	push	r15
+ 316:	0f 93       	push	r16
+ 318:	1f 93       	push	r17
+ 31a:	cf 93       	push	r28
+ 31c:	df 93       	push	r29
+ 31e:	cd b7       	in	r28, 0x3d	; 61
+ 320:	de b7       	in	r29, 0x3e	; 62
+ 322:	0b 85       	ldd	r16, Y+11	; 0x0b
+ 324:	1c 85       	ldd	r17, Y+12	; 0x0c
+ 326:	4d 85       	ldd	r20, Y+13	; 0x0d
 	
 	va_list args;
 	
 	seg->max_digits = cntrl_bus;
- 2ae:	f8 01       	movw	r30, r16
- 2b0:	40 a3       	std	Z+32, r20	; 0x20
+ 328:	f8 01       	movw	r30, r16
+ 32a:	40 a3       	std	Z+32, r20	; 0x20
 	
 	va_start(args,cntrl_bus);
- 2b2:	fe 01       	movw	r30, r28
- 2b4:	3e 96       	adiw	r30, 0x0e	; 14
+ 32c:	fe 01       	movw	r30, r28
+ 32e:	3e 96       	adiw	r30, 0x0e	; 14
 	
 	for(int  i = 0 ; i < cntrl_bus; i++) {
- 2b6:	80 e0       	ldi	r24, 0x00	; 0
- 2b8:	90 e0       	ldi	r25, 0x00	; 0
- 2ba:	0c c0       	rjmp	.+24     	; 0x2d4 <segment_config+0x40>
+ 330:	80 e0       	ldi	r24, 0x00	; 0
+ 332:	90 e0       	ldi	r25, 0x00	; 0
+ 334:	0c c0       	rjmp	.+24     	; 0x34e <segment_config+0x40>
 		seg->cntrl_bus[i] = va_arg(args,gpio_t);
- 2bc:	dc 01       	movw	r26, r24
- 2be:	18 96       	adiw	r26, 0x08	; 8
- 2c0:	aa 0f       	add	r26, r26
- 2c2:	bb 1f       	adc	r27, r27
- 2c4:	a0 0f       	add	r26, r16
- 2c6:	b1 1f       	adc	r27, r17
- 2c8:	20 81       	ld	r18, Z
- 2ca:	31 81       	ldd	r19, Z+1	; 0x01
- 2cc:	2d 93       	st	X+, r18
- 2ce:	3c 93       	st	X, r19
+ 336:	dc 01       	movw	r26, r24
+ 338:	18 96       	adiw	r26, 0x08	; 8
+ 33a:	aa 0f       	add	r26, r26
+ 33c:	bb 1f       	adc	r27, r27
+ 33e:	a0 0f       	add	r26, r16
+ 340:	b1 1f       	adc	r27, r17
+ 342:	20 81       	ld	r18, Z
+ 344:	31 81       	ldd	r19, Z+1	; 0x01
+ 346:	2d 93       	st	X+, r18
+ 348:	3c 93       	st	X, r19
 	
 	seg->max_digits = cntrl_bus;
 	
 	va_start(args,cntrl_bus);
 	
 	for(int  i = 0 ; i < cntrl_bus; i++) {
- 2d0:	01 96       	adiw	r24, 0x01	; 1
+ 34a:	01 96       	adiw	r24, 0x01	; 1
 		seg->cntrl_bus[i] = va_arg(args,gpio_t);
- 2d2:	32 96       	adiw	r30, 0x02	; 2
+ 34c:	32 96       	adiw	r30, 0x02	; 2
 	
 	seg->max_digits = cntrl_bus;
 	
 	va_start(args,cntrl_bus);
 	
 	for(int  i = 0 ; i < cntrl_bus; i++) {
- 2d4:	c4 2e       	mov	r12, r20
- 2d6:	d1 2c       	mov	r13, r1
- 2d8:	8c 15       	cp	r24, r12
- 2da:	9d 05       	cpc	r25, r13
- 2dc:	7c f3       	brlt	.-34     	; 0x2bc <segment_config+0x28>
- 2de:	80 e0       	ldi	r24, 0x00	; 0
- 2e0:	90 e0       	ldi	r25, 0x00	; 0
- 2e2:	0b c0       	rjmp	.+22     	; 0x2fa <segment_config+0x66>
+ 34e:	c4 2e       	mov	r12, r20
+ 350:	d1 2c       	mov	r13, r1
+ 352:	8c 15       	cp	r24, r12
+ 354:	9d 05       	cpc	r25, r13
+ 356:	7c f3       	brlt	.-34     	; 0x336 <segment_config+0x28>
+ 358:	80 e0       	ldi	r24, 0x00	; 0
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	0b c0       	rjmp	.+22     	; 0x374 <segment_config+0x66>
 		seg->cntrl_bus[i] = va_arg(args,gpio_t);
 		
 	}
 	
 	for(int i = 0; i < 8; i++) {
 		seg->data_bus[i] = va_arg(args,gpio_t);
- 2e4:	dc 01       	movw	r26, r24
- 2e6:	aa 0f       	add	r26, r26
- 2e8:	bb 1f       	adc	r27, r27
- 2ea:	a0 0f       	add	r26, r16
- 2ec:	b1 1f       	adc	r27, r17
- 2ee:	20 81       	ld	r18, Z
- 2f0:	31 81       	ldd	r19, Z+1	; 0x01
- 2f2:	2d 93       	st	X+, r18
- 2f4:	3c 93       	st	X, r19
+ 35e:	dc 01       	movw	r26, r24
+ 360:	aa 0f       	add	r26, r26
+ 362:	bb 1f       	adc	r27, r27
+ 364:	a0 0f       	add	r26, r16
+ 366:	b1 1f       	adc	r27, r17
+ 368:	20 81       	ld	r18, Z
+ 36a:	31 81       	ldd	r19, Z+1	; 0x01
+ 36c:	2d 93       	st	X+, r18
+ 36e:	3c 93       	st	X, r19
 	for(int  i = 0 ; i < cntrl_bus; i++) {
 		seg->cntrl_bus[i] = va_arg(args,gpio_t);
 		
 	}
 	
 	for(int i = 0; i < 8; i++) {
- 2f6:	01 96       	adiw	r24, 0x01	; 1
+ 370:	01 96       	adiw	r24, 0x01	; 1
 		seg->data_bus[i] = va_arg(args,gpio_t);
- 2f8:	32 96       	adiw	r30, 0x02	; 2
+ 372:	32 96       	adiw	r30, 0x02	; 2
 	for(int  i = 0 ; i < cntrl_bus; i++) {
 		seg->cntrl_bus[i] = va_arg(args,gpio_t);
 		
 	}
 	
 	for(int i = 0; i < 8; i++) {
- 2fa:	88 30       	cpi	r24, 0x08	; 8
- 2fc:	91 05       	cpc	r25, r1
- 2fe:	94 f3       	brlt	.-28     	; 0x2e4 <segment_config+0x50>
+ 374:	88 30       	cpi	r24, 0x08	; 8
+ 376:	91 05       	cpc	r25, r1
+ 378:	94 f3       	brlt	.-28     	; 0x35e <segment_config+0x50>
 		seg->data_bus[i] = va_arg(args,gpio_t);
 		
 	}
 	
 	u8_t type = (u8_t)va_arg(args,int);
- 300:	80 81       	ld	r24, Z
+ 37a:	80 81       	ld	r24, Z
 	
 	if(type == SEG_ANODE) {
- 302:	81 11       	cpse	r24, r1
- 304:	0a c0       	rjmp	.+20     	; 0x31a <segment_config+0x86>
+ 37c:	81 11       	cpse	r24, r1
+ 37e:	07 c0       	rjmp	.+14     	; 0x38e <segment_config+0x80>
 		
-		segOn = PIN_LOW;
- 306:	10 92 4e 01 	sts	0x014E, r1	; 0x80014e <segOn>
-		segOff = PIN_HIGH;
- 30a:	81 e0       	ldi	r24, 0x01	; 1
- 30c:	80 93 4d 01 	sts	0x014D, r24	; 0x80014d <segOff>
+		seg->segOn = PIN_LOW;
+ 380:	f8 01       	movw	r30, r16
+ 382:	11 a2       	std	Z+33, r1	; 0x21
+		seg->segOff = PIN_HIGH;
+ 384:	81 e0       	ldi	r24, 0x01	; 1
+ 386:	82 a3       	std	Z+34, r24	; 0x22
 		
-		digOn  = PIN_HIGH;
- 310:	80 93 4b 01 	sts	0x014B, r24	; 0x80014b <digOn>
-		digOff = PIN_LOW;
- 314:	10 92 4c 01 	sts	0x014C, r1	; 0x80014c <digOff>
- 318:	09 c0       	rjmp	.+18     	; 0x32c <segment_config+0x98>
+		seg->digOn  = PIN_HIGH;
+ 388:	84 a3       	std	Z+36, r24	; 0x24
+		seg->digOff = PIN_LOW;
+ 38a:	13 a2       	std	Z+35, r1	; 0x23
+ 38c:	06 c0       	rjmp	.+12     	; 0x39a <segment_config+0x8c>
 	}
 	else {
 		
-		segOn = PIN_HIGH;
- 31a:	81 e0       	ldi	r24, 0x01	; 1
- 31c:	80 93 4e 01 	sts	0x014E, r24	; 0x80014e <segOn>
-		segOff = PIN_LOW;
- 320:	10 92 4d 01 	sts	0x014D, r1	; 0x80014d <segOff>
+		seg->segOn = PIN_HIGH;
+ 38e:	81 e0       	ldi	r24, 0x01	; 1
+ 390:	f8 01       	movw	r30, r16
+ 392:	81 a3       	std	Z+33, r24	; 0x21
+		seg->segOff = PIN_LOW;
+ 394:	12 a2       	std	Z+34, r1	; 0x22
 		
-		digOn  = PIN_LOW;
- 324:	10 92 4b 01 	sts	0x014B, r1	; 0x80014b <digOn>
-		digOff = PIN_HIGH;
- 328:	80 93 4c 01 	sts	0x014C, r24	; 0x80014c <digOff>
+		seg->digOn  = PIN_LOW;
+ 396:	14 a2       	std	Z+36, r1	; 0x24
+		seg->digOff = PIN_HIGH;
+ 398:	83 a3       	std	Z+35, r24	; 0x23
 	}
 	va_end(args);
 	
 	for(int  i = 0 ; i < cntrl_bus; i++)
- 32c:	e1 2c       	mov	r14, r1
- 32e:	f1 2c       	mov	r15, r1
- 330:	0d c0       	rjmp	.+26     	; 0x34c <segment_config+0xb8>
-		gpio_config(&seg->cntrl_bus[i],PIN_OUT,digOff);
- 332:	c7 01       	movw	r24, r14
- 334:	08 96       	adiw	r24, 0x08	; 8
- 336:	88 0f       	add	r24, r24
- 338:	99 1f       	adc	r25, r25
- 33a:	40 91 4c 01 	lds	r20, 0x014C	; 0x80014c <digOff>
- 33e:	61 e0       	ldi	r22, 0x01	; 1
- 340:	80 0f       	add	r24, r16
- 342:	91 1f       	adc	r25, r17
- 344:	4f df       	rcall	.-354    	; 0x1e4 <gpio_config>
-		digOn  = PIN_LOW;
-		digOff = PIN_HIGH;
+ 39a:	e1 2c       	mov	r14, r1
+ 39c:	f1 2c       	mov	r15, r1
+ 39e:	0d c0       	rjmp	.+26     	; 0x3ba <segment_config+0xac>
+		gpio_config(&seg->cntrl_bus[i],PIN_OUT,seg->digOff);
+ 3a0:	f8 01       	movw	r30, r16
+ 3a2:	43 a1       	ldd	r20, Z+35	; 0x23
+ 3a4:	c7 01       	movw	r24, r14
+ 3a6:	08 96       	adiw	r24, 0x08	; 8
+ 3a8:	88 0f       	add	r24, r24
+ 3aa:	99 1f       	adc	r25, r25
+ 3ac:	61 e0       	ldi	r22, 0x01	; 1
+ 3ae:	80 0f       	add	r24, r16
+ 3b0:	91 1f       	adc	r25, r17
+ 3b2:	18 df       	rcall	.-464    	; 0x1e4 <gpio_config>
+		seg->digOn  = PIN_LOW;
+		seg->digOff = PIN_HIGH;
 	}
 	va_end(args);
 	
 	for(int  i = 0 ; i < cntrl_bus; i++)
- 346:	ff ef       	ldi	r31, 0xFF	; 255
- 348:	ef 1a       	sub	r14, r31
- 34a:	ff 0a       	sbc	r15, r31
- 34c:	ec 14       	cp	r14, r12
- 34e:	fd 04       	cpc	r15, r13
- 350:	84 f3       	brlt	.-32     	; 0x332 <segment_config+0x9e>
- 352:	e1 2c       	mov	r14, r1
- 354:	f1 2c       	mov	r15, r1
- 356:	0c c0       	rjmp	.+24     	; 0x370 <segment_config+0xdc>
-		gpio_config(&seg->cntrl_bus[i],PIN_OUT,digOff);
+ 3b4:	ff ef       	ldi	r31, 0xFF	; 255
+ 3b6:	ef 1a       	sub	r14, r31
+ 3b8:	ff 0a       	sbc	r15, r31
+ 3ba:	ec 14       	cp	r14, r12
+ 3bc:	fd 04       	cpc	r15, r13
+ 3be:	84 f3       	brlt	.-32     	; 0x3a0 <segment_config+0x92>
+ 3c0:	e1 2c       	mov	r14, r1
+ 3c2:	f1 2c       	mov	r15, r1
+ 3c4:	0c c0       	rjmp	.+24     	; 0x3de <segment_config+0xd0>
+		gpio_config(&seg->cntrl_bus[i],PIN_OUT,seg->digOff);
 	for(int i = 0; i < 7; i++)
-		gpio_config(&seg->data_bus[i],PIN_OUT,segOff);
- 358:	c7 01       	movw	r24, r14
- 35a:	88 0f       	add	r24, r24
- 35c:	99 1f       	adc	r25, r25
- 35e:	40 91 4d 01 	lds	r20, 0x014D	; 0x80014d <segOff>
- 362:	61 e0       	ldi	r22, 0x01	; 1
- 364:	80 0f       	add	r24, r16
- 366:	91 1f       	adc	r25, r17
- 368:	3d df       	rcall	.-390    	; 0x1e4 <gpio_config>
+		gpio_config(&seg->data_bus[i],PIN_OUT,seg->segOff);
+ 3c6:	f8 01       	movw	r30, r16
+ 3c8:	42 a1       	ldd	r20, Z+34	; 0x22
+ 3ca:	c7 01       	movw	r24, r14
+ 3cc:	88 0f       	add	r24, r24
+ 3ce:	99 1f       	adc	r25, r25
+ 3d0:	61 e0       	ldi	r22, 0x01	; 1
+ 3d2:	80 0f       	add	r24, r16
+ 3d4:	91 1f       	adc	r25, r17
+ 3d6:	06 df       	rcall	.-500    	; 0x1e4 <gpio_config>
 	}
 	va_end(args);
 	
 	for(int  i = 0 ; i < cntrl_bus; i++)
-		gpio_config(&seg->cntrl_bus[i],PIN_OUT,digOff);
+		gpio_config(&seg->cntrl_bus[i],PIN_OUT,seg->digOff);
 	for(int i = 0; i < 7; i++)
- 36a:	8f ef       	ldi	r24, 0xFF	; 255
- 36c:	e8 1a       	sub	r14, r24
- 36e:	f8 0a       	sbc	r15, r24
- 370:	e7 e0       	ldi	r30, 0x07	; 7
- 372:	ee 16       	cp	r14, r30
- 374:	f1 04       	cpc	r15, r1
- 376:	84 f3       	brlt	.-32     	; 0x358 <segment_config+0xc4>
-		gpio_config(&seg->data_bus[i],PIN_OUT,segOff);
+ 3d8:	ff ef       	ldi	r31, 0xFF	; 255
+ 3da:	ef 1a       	sub	r14, r31
+ 3dc:	ff 0a       	sbc	r15, r31
+ 3de:	87 e0       	ldi	r24, 0x07	; 7
+ 3e0:	e8 16       	cp	r14, r24
+ 3e2:	f1 04       	cpc	r15, r1
+ 3e4:	84 f3       	brlt	.-32     	; 0x3c6 <segment_config+0xb8>
+		gpio_config(&seg->data_bus[i],PIN_OUT,seg->segOff);
 }
- 378:	df 91       	pop	r29
- 37a:	cf 91       	pop	r28
- 37c:	1f 91       	pop	r17
- 37e:	0f 91       	pop	r16
- 380:	ff 90       	pop	r15
- 382:	ef 90       	pop	r14
- 384:	df 90       	pop	r13
- 386:	cf 90       	pop	r12
- 388:	08 95       	ret
+ 3e6:	df 91       	pop	r29
+ 3e8:	cf 91       	pop	r28
+ 3ea:	1f 91       	pop	r17
+ 3ec:	0f 91       	pop	r16
+ 3ee:	ff 90       	pop	r15
+ 3f0:	ef 90       	pop	r14
+ 3f2:	df 90       	pop	r13
+ 3f4:	cf 90       	pop	r12
+ 3f6:	08 95       	ret
 
-0000038a <segment_select>:
+000003f8 <segment_select>:
 
 void segment_select(segment_t *seg,u8_t dig) {
 	
 	if(dig >= seg->max_digits)
- 38a:	fc 01       	movw	r30, r24
- 38c:	20 a1       	ldd	r18, Z+32	; 0x20
- 38e:	62 17       	cp	r22, r18
- 390:	58 f4       	brcc	.+22     	; 0x3a8 <segment_select+0x1e>
+ 3f8:	fc 01       	movw	r30, r24
+ 3fa:	20 a1       	ldd	r18, Z+32	; 0x20
+ 3fc:	62 17       	cp	r22, r18
+ 3fe:	50 f4       	brcc	.+20     	; 0x414 <__LOCK_REGION_LENGTH__+0x14>
+ 400:	26 2f       	mov	r18, r22
 		return;
 	
-    	gpio_set(&seg->cntrl_bus[dig],digOn);
- 392:	26 2f       	mov	r18, r22
- 394:	30 e0       	ldi	r19, 0x00	; 0
- 396:	28 5f       	subi	r18, 0xF8	; 248
- 398:	3f 4f       	sbci	r19, 0xFF	; 255
- 39a:	22 0f       	add	r18, r18
- 39c:	33 1f       	adc	r19, r19
- 39e:	60 91 4b 01 	lds	r22, 0x014B	; 0x80014b <digOn>
- 3a2:	82 0f       	add	r24, r18
- 3a4:	93 1f       	adc	r25, r19
- 3a6:	f7 ce       	rjmp	.-530    	; 0x196 <gpio_set>
- 3a8:	08 95       	ret
+    	gpio_set(&seg->cntrl_bus[dig],seg->digOn);
+ 402:	64 a1       	ldd	r22, Z+36	; 0x24
+ 404:	30 e0       	ldi	r19, 0x00	; 0
+ 406:	28 5f       	subi	r18, 0xF8	; 248
+ 408:	3f 4f       	sbci	r19, 0xFF	; 255
+ 40a:	22 0f       	add	r18, r18
+ 40c:	33 1f       	adc	r19, r19
+ 40e:	82 0f       	add	r24, r18
+ 410:	93 1f       	adc	r25, r19
+ 412:	c1 ce       	rjmp	.-638    	; 0x196 <gpio_set>
+ 414:	08 95       	ret
 
-000003aa <segment_disselect>:
+00000416 <segment_disselect>:
 }
 
 void segment_disselect(segment_t *seg,u8_t dig) {
 	
 	if(dig >= seg->max_digits)
- 3aa:	fc 01       	movw	r30, r24
- 3ac:	20 a1       	ldd	r18, Z+32	; 0x20
- 3ae:	62 17       	cp	r22, r18
- 3b0:	58 f4       	brcc	.+22     	; 0x3c8 <segment_disselect+0x1e>
+ 416:	fc 01       	movw	r30, r24
+ 418:	20 a1       	ldd	r18, Z+32	; 0x20
+ 41a:	62 17       	cp	r22, r18
+ 41c:	50 f4       	brcc	.+20     	; 0x432 <segment_disselect+0x1c>
+ 41e:	26 2f       	mov	r18, r22
 		return;
 	
-	gpio_set(&seg->cntrl_bus[dig],digOff);
- 3b2:	26 2f       	mov	r18, r22
- 3b4:	30 e0       	ldi	r19, 0x00	; 0
- 3b6:	28 5f       	subi	r18, 0xF8	; 248
- 3b8:	3f 4f       	sbci	r19, 0xFF	; 255
- 3ba:	22 0f       	add	r18, r18
- 3bc:	33 1f       	adc	r19, r19
- 3be:	60 91 4c 01 	lds	r22, 0x014C	; 0x80014c <digOff>
- 3c2:	82 0f       	add	r24, r18
- 3c4:	93 1f       	adc	r25, r19
- 3c6:	e7 ce       	rjmp	.-562    	; 0x196 <gpio_set>
- 3c8:	08 95       	ret
+	gpio_set(&seg->cntrl_bus[dig],seg->digOff);
+ 420:	63 a1       	ldd	r22, Z+35	; 0x23
+ 422:	30 e0       	ldi	r19, 0x00	; 0
+ 424:	28 5f       	subi	r18, 0xF8	; 248
+ 426:	3f 4f       	sbci	r19, 0xFF	; 255
+ 428:	22 0f       	add	r18, r18
+ 42a:	33 1f       	adc	r19, r19
+ 42c:	82 0f       	add	r24, r18
+ 42e:	93 1f       	adc	r25, r19
+ 430:	b2 ce       	rjmp	.-668    	; 0x196 <gpio_set>
+ 432:	08 95       	ret
 
-000003ca <segment_write>:
+00000434 <segment_write>:
 }
 
 void segment_write(segment_t *seg,u8_t dig, u8_t val) {			
- 3ca:	0f 93       	push	r16
- 3cc:	1f 93       	push	r17
- 3ce:	cf 93       	push	r28
+ 434:	1f 93       	push	r17
+ 436:	cf 93       	push	r28
+ 438:	df 93       	push	r29
 		
 		if(dig >= seg->max_digits)
- 3d0:	fc 01       	movw	r30, r24
- 3d2:	20 a1       	ldd	r18, Z+32	; 0x20
- 3d4:	62 17       	cp	r22, r18
- 3d6:	08 f0       	brcs	.+2      	; 0x3da <segment_write+0x10>
- 3d8:	6a c0       	rjmp	.+212    	; 0x4ae <__LOCK_REGION_LENGTH__+0xae>
- 3da:	8c 01       	movw	r16, r24
+ 43a:	fc 01       	movw	r30, r24
+ 43c:	20 a1       	ldd	r18, Z+32	; 0x20
+ 43e:	62 17       	cp	r22, r18
+ 440:	08 f0       	brcs	.+2      	; 0x444 <segment_write+0x10>
+ 442:	5a c0       	rjmp	.+180    	; 0x4f8 <segment_write+0xc4>
+ 444:	ec 01       	movw	r28, r24
 			return;
 			
 		u8_t chr = pgm_read_byte(&getSegChar[val]);	
- 3dc:	e4 2f       	mov	r30, r20
- 3de:	f0 e0       	ldi	r31, 0x00	; 0
- 3e0:	e4 57       	subi	r30, 0x74	; 116
- 3e2:	ff 4f       	sbci	r31, 0xFF	; 255
- 3e4:	c4 91       	lpm	r28, Z
+ 446:	e4 2f       	mov	r30, r20
+ 448:	f0 e0       	ldi	r31, 0x00	; 0
+ 44a:	e4 57       	subi	r30, 0x74	; 116
+ 44c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 44e:	14 91       	lpm	r17, Z
 			
 		if((chr & (1 << 7)))
- 3e6:	cc 23       	and	r28, r28
- 3e8:	2c f4       	brge	.+10     	; 0x3f4 <segment_write+0x2a>
-			gpio_set(&seg->data_bus[SEG_BUS_H],segOn);
- 3ea:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 3ee:	0e 96       	adiw	r24, 0x0e	; 14
- 3f0:	d2 de       	rcall	.-604    	; 0x196 <gpio_set>
- 3f2:	04 c0       	rjmp	.+8      	; 0x3fc <segment_write+0x32>
+ 450:	11 23       	and	r17, r17
+ 452:	24 f4       	brge	.+8      	; 0x45c <segment_write+0x28>
+			gpio_set(&seg->data_bus[SEG_BUS_H],seg->segOn);
+ 454:	69 a1       	ldd	r22, Y+33	; 0x21
+ 456:	0e 96       	adiw	r24, 0x0e	; 14
+ 458:	9e de       	rcall	.-708    	; 0x196 <gpio_set>
+ 45a:	03 c0       	rjmp	.+6      	; 0x462 <segment_write+0x2e>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_H],segOff);
- 3f4:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 3f8:	0e 96       	adiw	r24, 0x0e	; 14
- 3fa:	cd de       	rcall	.-614    	; 0x196 <gpio_set>
+			gpio_set(&seg->data_bus[SEG_BUS_H],seg->segOff);
+ 45c:	6a a1       	ldd	r22, Y+34	; 0x22
+ 45e:	0e 96       	adiw	r24, 0x0e	; 14
+ 460:	9a de       	rcall	.-716    	; 0x196 <gpio_set>
 			
 		if((chr & (1 << 6)))
- 3fc:	c6 ff       	sbrs	r28, 6
- 3fe:	05 c0       	rjmp	.+10     	; 0x40a <__LOCK_REGION_LENGTH__+0xa>
-			gpio_set(&seg->data_bus[SEG_BUS_A],segOn);
- 400:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 404:	c8 01       	movw	r24, r16
- 406:	c7 de       	rcall	.-626    	; 0x196 <gpio_set>
- 408:	04 c0       	rjmp	.+8      	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
+ 462:	16 ff       	sbrs	r17, 6
+ 464:	04 c0       	rjmp	.+8      	; 0x46e <segment_write+0x3a>
+			gpio_set(&seg->data_bus[SEG_BUS_A],seg->segOn);
+ 466:	69 a1       	ldd	r22, Y+33	; 0x21
+ 468:	ce 01       	movw	r24, r28
+ 46a:	95 de       	rcall	.-726    	; 0x196 <gpio_set>
+ 46c:	03 c0       	rjmp	.+6      	; 0x474 <segment_write+0x40>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_A],segOff);
- 40a:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 40e:	c8 01       	movw	r24, r16
- 410:	c2 de       	rcall	.-636    	; 0x196 <gpio_set>
+			gpio_set(&seg->data_bus[SEG_BUS_A],seg->segOff);
+ 46e:	6a a1       	ldd	r22, Y+34	; 0x22
+ 470:	ce 01       	movw	r24, r28
+ 472:	91 de       	rcall	.-734    	; 0x196 <gpio_set>
+ 474:	15 ff       	sbrs	r17, 5
 			
 		if((chr & (1 << 5)))
- 412:	c5 ff       	sbrs	r28, 5
- 414:	06 c0       	rjmp	.+12     	; 0x422 <__LOCK_REGION_LENGTH__+0x22>
-			gpio_set(&seg->data_bus[SEG_BUS_B],segOn);
- 416:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 41a:	c8 01       	movw	r24, r16
- 41c:	02 96       	adiw	r24, 0x02	; 2
- 41e:	bb de       	rcall	.-650    	; 0x196 <gpio_set>
- 420:	05 c0       	rjmp	.+10     	; 0x42c <__LOCK_REGION_LENGTH__+0x2c>
+ 476:	05 c0       	rjmp	.+10     	; 0x482 <segment_write+0x4e>
+			gpio_set(&seg->data_bus[SEG_BUS_B],seg->segOn);
+ 478:	69 a1       	ldd	r22, Y+33	; 0x21
+ 47a:	ce 01       	movw	r24, r28
+ 47c:	02 96       	adiw	r24, 0x02	; 2
+ 47e:	8b de       	rcall	.-746    	; 0x196 <gpio_set>
+ 480:	04 c0       	rjmp	.+8      	; 0x48a <segment_write+0x56>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_B],segOff);
- 422:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 426:	c8 01       	movw	r24, r16
- 428:	02 96       	adiw	r24, 0x02	; 2
- 42a:	b5 de       	rcall	.-662    	; 0x196 <gpio_set>
- 42c:	c4 ff       	sbrs	r28, 4
+			gpio_set(&seg->data_bus[SEG_BUS_B],seg->segOff);
+ 482:	6a a1       	ldd	r22, Y+34	; 0x22
+ 484:	ce 01       	movw	r24, r28
+ 486:	02 96       	adiw	r24, 0x02	; 2
+ 488:	86 de       	rcall	.-756    	; 0x196 <gpio_set>
 			
 		if((chr & (1 << 4)))
- 42e:	06 c0       	rjmp	.+12     	; 0x43c <__LOCK_REGION_LENGTH__+0x3c>
-			gpio_set(&seg->data_bus[SEG_BUS_C],segOn);
- 430:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 434:	c8 01       	movw	r24, r16
- 436:	04 96       	adiw	r24, 0x04	; 4
- 438:	ae de       	rcall	.-676    	; 0x196 <gpio_set>
- 43a:	05 c0       	rjmp	.+10     	; 0x446 <__LOCK_REGION_LENGTH__+0x46>
+ 48a:	14 ff       	sbrs	r17, 4
+ 48c:	05 c0       	rjmp	.+10     	; 0x498 <segment_write+0x64>
+			gpio_set(&seg->data_bus[SEG_BUS_C],seg->segOn);
+ 48e:	69 a1       	ldd	r22, Y+33	; 0x21
+ 490:	ce 01       	movw	r24, r28
+ 492:	04 96       	adiw	r24, 0x04	; 4
+ 494:	80 de       	rcall	.-768    	; 0x196 <gpio_set>
+ 496:	04 c0       	rjmp	.+8      	; 0x4a0 <segment_write+0x6c>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_C],segOff);
- 43c:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 440:	c8 01       	movw	r24, r16
- 442:	04 96       	adiw	r24, 0x04	; 4
- 444:	a8 de       	rcall	.-688    	; 0x196 <gpio_set>
+			gpio_set(&seg->data_bus[SEG_BUS_C],seg->segOff);
+ 498:	6a a1       	ldd	r22, Y+34	; 0x22
+ 49a:	ce 01       	movw	r24, r28
+ 49c:	04 96       	adiw	r24, 0x04	; 4
+ 49e:	7b de       	rcall	.-778    	; 0x196 <gpio_set>
 			
 		if((chr & (1 << 3)))
- 446:	c3 ff       	sbrs	r28, 3
- 448:	06 c0       	rjmp	.+12     	; 0x456 <__LOCK_REGION_LENGTH__+0x56>
-			gpio_set(&seg->data_bus[SEG_BUS_D],segOn);
- 44a:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 44e:	c8 01       	movw	r24, r16
- 450:	06 96       	adiw	r24, 0x06	; 6
- 452:	a1 de       	rcall	.-702    	; 0x196 <gpio_set>
- 454:	05 c0       	rjmp	.+10     	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
+ 4a0:	13 ff       	sbrs	r17, 3
+ 4a2:	05 c0       	rjmp	.+10     	; 0x4ae <segment_write+0x7a>
+			gpio_set(&seg->data_bus[SEG_BUS_D],seg->segOn);
+ 4a4:	69 a1       	ldd	r22, Y+33	; 0x21
+ 4a6:	ce 01       	movw	r24, r28
+ 4a8:	06 96       	adiw	r24, 0x06	; 6
+ 4aa:	75 de       	rcall	.-790    	; 0x196 <gpio_set>
+ 4ac:	04 c0       	rjmp	.+8      	; 0x4b6 <segment_write+0x82>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_D],segOff);
- 456:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 45a:	c8 01       	movw	r24, r16
- 45c:	06 96       	adiw	r24, 0x06	; 6
- 45e:	9b de       	rcall	.-714    	; 0x196 <gpio_set>
+			gpio_set(&seg->data_bus[SEG_BUS_D],seg->segOff);
+ 4ae:	6a a1       	ldd	r22, Y+34	; 0x22
+ 4b0:	ce 01       	movw	r24, r28
+ 4b2:	06 96       	adiw	r24, 0x06	; 6
+ 4b4:	70 de       	rcall	.-800    	; 0x196 <gpio_set>
 			
 		if((chr & (1 << 2)))
- 460:	c2 ff       	sbrs	r28, 2
- 462:	06 c0       	rjmp	.+12     	; 0x470 <__LOCK_REGION_LENGTH__+0x70>
-			gpio_set(&seg->data_bus[SEG_BUS_E],segOn);
- 464:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 468:	c8 01       	movw	r24, r16
- 46a:	08 96       	adiw	r24, 0x08	; 8
- 46c:	94 de       	rcall	.-728    	; 0x196 <gpio_set>
- 46e:	05 c0       	rjmp	.+10     	; 0x47a <__LOCK_REGION_LENGTH__+0x7a>
+ 4b6:	12 ff       	sbrs	r17, 2
+			gpio_set(&seg->data_bus[SEG_BUS_E],seg->segOn);
+ 4b8:	05 c0       	rjmp	.+10     	; 0x4c4 <segment_write+0x90>
+ 4ba:	69 a1       	ldd	r22, Y+33	; 0x21
+ 4bc:	ce 01       	movw	r24, r28
+ 4be:	08 96       	adiw	r24, 0x08	; 8
+ 4c0:	6a de       	rcall	.-812    	; 0x196 <gpio_set>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_E],segOff);
- 470:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 474:	c8 01       	movw	r24, r16
- 476:	08 96       	adiw	r24, 0x08	; 8
- 478:	8e de       	rcall	.-740    	; 0x196 <gpio_set>
+			gpio_set(&seg->data_bus[SEG_BUS_E],seg->segOff);
+ 4c2:	04 c0       	rjmp	.+8      	; 0x4cc <segment_write+0x98>
+ 4c4:	6a a1       	ldd	r22, Y+34	; 0x22
+ 4c6:	ce 01       	movw	r24, r28
+ 4c8:	08 96       	adiw	r24, 0x08	; 8
 			
 		if((chr & (1 << 1)))
- 47a:	c1 ff       	sbrs	r28, 1
-			gpio_set(&seg->data_bus[SEG_BUS_F],segOn);
- 47c:	06 c0       	rjmp	.+12     	; 0x48a <__LOCK_REGION_LENGTH__+0x8a>
- 47e:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 482:	c8 01       	movw	r24, r16
- 484:	0a 96       	adiw	r24, 0x0a	; 10
- 486:	87 de       	rcall	.-754    	; 0x196 <gpio_set>
+ 4ca:	65 de       	rcall	.-822    	; 0x196 <gpio_set>
+ 4cc:	11 ff       	sbrs	r17, 1
+			gpio_set(&seg->data_bus[SEG_BUS_F],seg->segOn);
+ 4ce:	05 c0       	rjmp	.+10     	; 0x4da <segment_write+0xa6>
+ 4d0:	69 a1       	ldd	r22, Y+33	; 0x21
+ 4d2:	ce 01       	movw	r24, r28
+ 4d4:	0a 96       	adiw	r24, 0x0a	; 10
+ 4d6:	5f de       	rcall	.-834    	; 0x196 <gpio_set>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_F],segOff);
- 488:	05 c0       	rjmp	.+10     	; 0x494 <__LOCK_REGION_LENGTH__+0x94>
- 48a:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 48e:	c8 01       	movw	r24, r16
- 490:	0a 96       	adiw	r24, 0x0a	; 10
+			gpio_set(&seg->data_bus[SEG_BUS_F],seg->segOff);
+ 4d8:	04 c0       	rjmp	.+8      	; 0x4e2 <segment_write+0xae>
+ 4da:	6a a1       	ldd	r22, Y+34	; 0x22
+ 4dc:	ce 01       	movw	r24, r28
+ 4de:	0a 96       	adiw	r24, 0x0a	; 10
 			
 		if((chr & (1 << 0)))
- 492:	81 de       	rcall	.-766    	; 0x196 <gpio_set>
- 494:	c0 ff       	sbrs	r28, 0
-			gpio_set(&seg->data_bus[SEG_BUS_G],segOn);
- 496:	06 c0       	rjmp	.+12     	; 0x4a4 <__LOCK_REGION_LENGTH__+0xa4>
- 498:	60 91 4e 01 	lds	r22, 0x014E	; 0x80014e <segOn>
- 49c:	c8 01       	movw	r24, r16
- 49e:	0c 96       	adiw	r24, 0x0c	; 12
- 4a0:	7a de       	rcall	.-780    	; 0x196 <gpio_set>
- 4a2:	05 c0       	rjmp	.+10     	; 0x4ae <__LOCK_REGION_LENGTH__+0xae>
+ 4e0:	5a de       	rcall	.-844    	; 0x196 <gpio_set>
+ 4e2:	10 ff       	sbrs	r17, 0
+			gpio_set(&seg->data_bus[SEG_BUS_G],seg->segOn);
+ 4e4:	05 c0       	rjmp	.+10     	; 0x4f0 <segment_write+0xbc>
+ 4e6:	69 a1       	ldd	r22, Y+33	; 0x21
+ 4e8:	ce 01       	movw	r24, r28
+ 4ea:	0c 96       	adiw	r24, 0x0c	; 12
+ 4ec:	54 de       	rcall	.-856    	; 0x196 <gpio_set>
+ 4ee:	04 c0       	rjmp	.+8      	; 0x4f8 <segment_write+0xc4>
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_G],segOff);
- 4a4:	60 91 4d 01 	lds	r22, 0x014D	; 0x80014d <segOff>
- 4a8:	c8 01       	movw	r24, r16
- 4aa:	0c 96       	adiw	r24, 0x0c	; 12
- 4ac:	74 de       	rcall	.-792    	; 0x196 <gpio_set>
- 4ae:	cf 91       	pop	r28
+			gpio_set(&seg->data_bus[SEG_BUS_G],seg->segOff);
+ 4f0:	6a a1       	ldd	r22, Y+34	; 0x22
+ 4f2:	ce 01       	movw	r24, r28
+ 4f4:	0c 96       	adiw	r24, 0x0c	; 12
+ 4f6:	4f de       	rcall	.-866    	; 0x196 <gpio_set>
+ 4f8:	df 91       	pop	r29
 		
 }
- 4b0:	1f 91       	pop	r17
- 4b2:	0f 91       	pop	r16
- 4b4:	08 95       	ret
+ 4fa:	cf 91       	pop	r28
+ 4fc:	1f 91       	pop	r17
+ 4fe:	08 95       	ret
 
-000004b6 <segment_writeChar>:
- 4b6:	1f 93       	push	r17
+00000500 <segment_writeChar>:
+ 500:	1f 93       	push	r17
 
 void segment_writeChar(segment_t *seg,u8_t dig,u8_t chr) {
- 4b8:	cf 93       	push	r28
- 4ba:	df 93       	push	r29
- 4bc:	ec 01       	movw	r28, r24
- 4be:	16 2f       	mov	r17, r22
+ 502:	cf 93       	push	r28
+ 504:	df 93       	push	r29
+ 506:	ec 01       	movw	r28, r24
+ 508:	16 2f       	mov	r17, r22
 	
 	segment_write(seg,dig,chr);
- 4c0:	84 df       	rcall	.-248    	; 0x3ca <segment_write>
+ 50a:	94 df       	rcall	.-216    	; 0x434 <segment_write>
 
 	segment_select(seg,dig);
- 4c2:	61 2f       	mov	r22, r17
- 4c4:	ce 01       	movw	r24, r28
- 4c6:	61 df       	rcall	.-318    	; 0x38a <segment_select>
+ 50c:	61 2f       	mov	r22, r17
+ 50e:	ce 01       	movw	r24, r28
+ 510:	73 df       	rcall	.-282    	; 0x3f8 <segment_select>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 4c8:	89 ef       	ldi	r24, 0xF9	; 249
- 4ca:	90 e0       	ldi	r25, 0x00	; 0
- 4cc:	01 97       	sbiw	r24, 0x01	; 1
- 4ce:	f1 f7       	brne	.-4      	; 0x4cc <segment_writeChar+0x16>
- 4d0:	00 c0       	rjmp	.+0      	; 0x4d2 <segment_writeChar+0x1c>
- 4d2:	00 00       	nop
+ 512:	89 ef       	ldi	r24, 0xF9	; 249
+ 514:	90 e0       	ldi	r25, 0x00	; 0
+ 516:	01 97       	sbiw	r24, 0x01	; 1
+ 518:	f1 f7       	brne	.-4      	; 0x516 <segment_writeChar+0x16>
+ 51a:	00 c0       	rjmp	.+0      	; 0x51c <segment_writeChar+0x1c>
+ 51c:	00 00       	nop
 	_delay_ms(1);
 	segment_disselect(seg,dig);
- 4d4:	61 2f       	mov	r22, r17
- 4d6:	ce 01       	movw	r24, r28
- 4d8:	68 df       	rcall	.-304    	; 0x3aa <segment_disselect>
- 4da:	89 ef       	ldi	r24, 0xF9	; 249
- 4dc:	90 e0       	ldi	r25, 0x00	; 0
- 4de:	01 97       	sbiw	r24, 0x01	; 1
- 4e0:	f1 f7       	brne	.-4      	; 0x4de <segment_writeChar+0x28>
- 4e2:	00 c0       	rjmp	.+0      	; 0x4e4 <segment_writeChar+0x2e>
- 4e4:	00 00       	nop
+ 51e:	61 2f       	mov	r22, r17
+ 520:	ce 01       	movw	r24, r28
+ 522:	79 df       	rcall	.-270    	; 0x416 <segment_disselect>
+ 524:	89 ef       	ldi	r24, 0xF9	; 249
+ 526:	90 e0       	ldi	r25, 0x00	; 0
+ 528:	01 97       	sbiw	r24, 0x01	; 1
+ 52a:	f1 f7       	brne	.-4      	; 0x528 <segment_writeChar+0x28>
+ 52c:	00 c0       	rjmp	.+0      	; 0x52e <segment_writeChar+0x2e>
+ 52e:	00 00       	nop
 		_delay_ms(1);
 }
- 4e6:	df 91       	pop	r29
- 4e8:	cf 91       	pop	r28
- 4ea:	1f 91       	pop	r17
- 4ec:	08 95       	ret
+ 530:	df 91       	pop	r29
+ 532:	cf 91       	pop	r28
+ 534:	1f 91       	pop	r17
+ 536:	08 95       	ret
 
-000004ee <_exit>:
- 4ee:	f8 94       	cli
+00000538 <_exit>:
+ 538:	f8 94       	cli
 
-000004f0 <__stop_program>:
- 4f0:	ff cf       	rjmp	.-2      	; 0x4f0 <__stop_program>
+0000053a <__stop_program>:
+ 53a:	ff cf       	rjmp	.-2      	; 0x53a <__stop_program>

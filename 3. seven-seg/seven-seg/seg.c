@@ -138,7 +138,7 @@ const uint8_t  getSegChar[] PROGMEM = {
 	
 };
 
-u8_t segOn,segOff,digOff,digOn;
+
 
 void segment_config(segment_t *seg,u8_t cntrl_bus,...) {
 	
@@ -162,26 +162,26 @@ void segment_config(segment_t *seg,u8_t cntrl_bus,...) {
 	
 	if(type == SEG_ANODE) {
 		
-		segOn = PIN_LOW;
-		segOff = PIN_HIGH;
+		seg->segOn = PIN_LOW;
+		seg->segOff = PIN_HIGH;
 		
-		digOn  = PIN_HIGH;
-		digOff = PIN_LOW;
+		seg->digOn  = PIN_HIGH;
+		seg->digOff = PIN_LOW;
 	}
 	else {
 		
-		segOn = PIN_HIGH;
-		segOff = PIN_LOW;
+		seg->segOn = PIN_HIGH;
+		seg->segOff = PIN_LOW;
 		
-		digOn  = PIN_LOW;
-		digOff = PIN_HIGH;
+		seg->digOn  = PIN_LOW;
+		seg->digOff = PIN_HIGH;
 	}
 	va_end(args);
 	
 	for(int  i = 0 ; i < cntrl_bus; i++)
-		gpio_config(&seg->cntrl_bus[i],PIN_OUT,digOff);
+		gpio_config(&seg->cntrl_bus[i],PIN_OUT,seg->digOff);
 	for(int i = 0; i < 7; i++)
-		gpio_config(&seg->data_bus[i],PIN_OUT,segOff);
+		gpio_config(&seg->data_bus[i],PIN_OUT,seg->segOff);
 }
 
 void segment_select(segment_t *seg,u8_t dig) {
@@ -189,7 +189,7 @@ void segment_select(segment_t *seg,u8_t dig) {
 	if(dig >= seg->max_digits)
 		return;
 	
-    	gpio_set(&seg->cntrl_bus[dig],digOn);
+    	gpio_set(&seg->cntrl_bus[dig],seg->digOn);
 }
 
 void segment_disselect(segment_t *seg,u8_t dig) {
@@ -197,7 +197,7 @@ void segment_disselect(segment_t *seg,u8_t dig) {
 	if(dig >= seg->max_digits)
 		return;
 	
-	gpio_set(&seg->cntrl_bus[dig],digOff);
+	gpio_set(&seg->cntrl_bus[dig],seg->digOff);
 }
 
 void segment_write(segment_t *seg,u8_t dig, u8_t val) {			
@@ -208,44 +208,44 @@ void segment_write(segment_t *seg,u8_t dig, u8_t val) {
 		u8_t chr = pgm_read_byte(&getSegChar[val]);	
 			
 		if((chr & (1 << 7)))
-			gpio_set(&seg->data_bus[SEG_BUS_H],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_H],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_H],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_H],seg->segOff);
 			
 		if((chr & (1 << 6)))
-			gpio_set(&seg->data_bus[SEG_BUS_A],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_A],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_A],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_A],seg->segOff);
 			
 		if((chr & (1 << 5)))
-			gpio_set(&seg->data_bus[SEG_BUS_B],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_B],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_B],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_B],seg->segOff);
 			
 		if((chr & (1 << 4)))
-			gpio_set(&seg->data_bus[SEG_BUS_C],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_C],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_C],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_C],seg->segOff);
 			
 		if((chr & (1 << 3)))
-			gpio_set(&seg->data_bus[SEG_BUS_D],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_D],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_D],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_D],seg->segOff);
 			
 		if((chr & (1 << 2)))
-			gpio_set(&seg->data_bus[SEG_BUS_E],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_E],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_E],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_E],seg->segOff);
 			
 		if((chr & (1 << 1)))
-			gpio_set(&seg->data_bus[SEG_BUS_F],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_F],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_F],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_F],seg->segOff);
 			
 		if((chr & (1 << 0)))
-			gpio_set(&seg->data_bus[SEG_BUS_G],segOn);
+			gpio_set(&seg->data_bus[SEG_BUS_G],seg->segOn);
 		else 
-			gpio_set(&seg->data_bus[SEG_BUS_G],segOff);
+			gpio_set(&seg->data_bus[SEG_BUS_G],seg->segOff);
 		
 }
 
