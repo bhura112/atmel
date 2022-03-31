@@ -1523,6 +1523,7 @@ int main() {
      880:	87 ed       	ldi	r24, 0xD7	; 215
      882:	91 e0       	ldi	r25, 0x01	; 1
      884:	49 dc       	rcall	.-1902   	; 0x118 <Gpio_PinConfig>
+	
     Timer_Start(&led1_timer, led_blink_speed, TIMER_RESTART_AFTER_COMPLETED);
      886:	60 91 d5 01 	lds	r22, 0x01D5	; 0x8001d5 <led_blink_speed>
      88a:	70 91 d6 01 	lds	r23, 0x01D6	; 0x8001d6 <led_blink_speed+0x1>
