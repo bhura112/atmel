@@ -1,0 +1,57 @@
+/*
+ * Boot_and_Application.c
+ *
+ * Created: 15/10/2019 09:24:02
+ * Author : uid23021
+ */ 
+
+#include <avr/io.h>
+#include <avr/boot.h>
+
+#define F_CPU 1000000UL
+#include <util/delay.h>
+
+typedef void (*jumptoappfunc)();
+jumptoappfunc runapp = (jumptoappfunc)0x200;
+
+    	typedef union
+    	{
+    		  struct {
+		  
+				  uint8_t STX;
+				  uint8_t LEN_L;
+				  uint8_t LEN_H;
+				  uint8_t CMD_F;
+				  uint8_t DATA_CRC[64];
+			  }data;
+		      uint8_t bytes[sizeof(data)];
+		}RX_TX_BUFFER;
+		
+typedef struct {
+
+}RX_TX_FRAME;
+
+int main(void)
+{
+	uint8_t i = 0;
+	uint16_t word = 0;
+	
+    DDRB = 0xFF;
+	
+	for(int i = 0; i < SPM_PAGESIZE; i++) {
+	   word = data
+	}
+    
+	while (i < 3) 
+    {
+		PORTB = 0x00;
+		_delay_ms(1000);
+		PORTB = 0xFF;
+		_delay_ms(1000);
+		i++;
+    }
+	
+	runapp();
+	while(1);
+}
+
