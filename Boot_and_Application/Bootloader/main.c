@@ -1,17 +1,15 @@
 #include <avr/io.h>
-#include <avr/boot.h>
+#include "boot.h"
 
-
-
-#include "uart.h"
 
 int main(void)
 {
-    Uart_Initialize(9600);	
+   	
+	BootInitialize();
 	
 	while (1)
 	{
-		Uart_Task();
+	
 	}
 }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

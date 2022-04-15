@@ -10,9 +10,12 @@
 #define UART_H_
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #define F_CPU 1000000UL
-
 #include <util/delay.h>
+
+typedef void (*uartRxCallback)(uint8_t);
+typedef void (*uartTxCallback)(uint8_t);
 typedef volatile union {
     uint8_t u8;
 	struct  
@@ -62,9 +65,10 @@ typedef volatile union {
 #define UCSRBbits (*((ucsrb_bits_t *)(&UCSRB)))
 #define UCSRCbits (*((ucsrc_bits_t *)(&UCSRC)))
 
+extern uartRxCallback uartRx;
+
 void Uart_Initialize(uint32_t baudrate);
 
 void Uart_TxChar(uint8_t chr);
-void Uart_TxBuffer(const char *buf,uint16_t size);
 
 #endif /* UART_H_ */
